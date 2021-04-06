@@ -1,0 +1,83 @@
+$primary-color: rgb(74, 107, 105);
+
+html, body, * {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+}
+
+button, input[type="submit"] {
+  background-color: $primary-color;
+  border: 5px solid lighten($primary-color, 30%);
+  border-radius: 10px;
+  box-shadow: 1px 1px 3px $primary-color;
+  color: white;
+  margin: 0 0.5em;
+  padding: 1em;
+  outline: none;
+  &:hover {
+    background-color: darken($primary-color, 5%);
+  }
+  &:active {
+    background-color: darken($primary-color, 10%);
+    box-shadow: 1px 1px 1px $primary-color;
+  }
+}
+
+input {
+  padding: 1em;
+  &:not([type="submit"]) {
+    display: block;
+    margin: 0.5em;
+  }
+}
+
+form {
+  padding: 0.5em;
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  label {
+    text-align: center;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+}
+
+main {
+  margin: 2em auto;
+  width: 600px;
+}
+
+.question {
+  border: 2px solid darken($primary-color, 10);
+  margin: 1em 0;
+  box-shadow: 3px 3px 5px darken($primary-color, 30);
+  header {
+    font-weight: 700;
+    background-color: lighten($primary-color, 40);
+    border-bottom: 1px solid $primary-color;
+    padding: 1em;
+  }
+  .answer {
+    padding: 1em;
+  }
+  footer {
+    text-align: center;
+    padding: 0.5em 1em;
+    border-top: 1px solid $primary-color;
+    background-color: lighten($primary-color, 45);
+  }
+}
+
+span {
+  transition: all 1s ease; 
+}
+
+.blurred {
+  color: transparent;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

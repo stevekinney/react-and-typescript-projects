@@ -2,7 +2,11 @@
   "name": "react-and-typescript-projects",
   "version": "1.0.0",
   "description": "",
+  "scripts": {
+    "install-all": "npm-recursive-install"
+  },
   "dependencies": {
+    "lodash.shuffle": "^4.2.0",
     "prop-types": "15.7.2",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -12,6 +16,7 @@
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
     "node-sass": "^5.0.0",
+    "recursive-install": "^1.4.0",
     "typescript": "^4.2.3"
   },
   "browserslist": [
