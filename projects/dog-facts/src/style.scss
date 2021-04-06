@@ -1,0 +1,77 @@
+$primary-color: rgb(15, 139, 35);
+
+html, body, * {
+  box-sizing: border-box;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+button, input[type="submit"] {
+  background-color: $primary-color;
+  border: 5px solid lighten($primary-color, 30%);
+  color: white;
+  margin: 0 0.5em;
+  padding: 1em;
+  outline: none;
+  &:hover {
+    background-color: darken($primary-color, 5%);
+  }
+  &:active {
+    background-color: darken($primary-color, 10%);
+  }
+}
+
+input, label {
+  padding: 1em;
+  &:not([type="submit"]) {
+    display: block;
+    margin: 0.5em;
+  }
+}
+
+form {
+  padding: 0.5em;
+  margin: 1em 0;
+  display: flex;
+  flex-direction: column;
+  label {
+    text-align: center;
+    display: block;
+    margin-bottom: 0.5em;
+  }
+}
+
+main {
+  border: 5px solid lighten($primary-color, 40);
+  margin: 2em auto;
+  padding: 1em;
+  width: 600px;
+  box-shadow: 1px 1px 3px lighten($primary-color, 40);
+}
+
+.fact-input {
+  display: flex;
+  label, input {
+    display: block;
+    width: 320px;
+    font-weight: 700;
+  }
+  input {
+    width: 100%;
+  }
+}
+
+.dog-fact {
+  border: 1px solid lighten($primary-color, 30);
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 1px 1px 3px lighten($primary-color, 40);
+  h3 {
+    margin-top: 0;
+    color: $primary-color;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed lighten($primary-color, 40);
+  }
+  p {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+}
