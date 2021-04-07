@@ -29,7 +29,13 @@ const friends: UserModel[] = [
   { displayName: 'Tyrannosaurus', accountId: '789', isVerified: true }
 ];
 
-const CurrentUser = ({ accountId, displayName, isVerified }: UserModel) => {
+type UserProps = Omit<UserModel, 'accountId'>;
+type AlternateUserProps = Pick<UserModel, 'displayName' | 'isVerified'>;
+
+const CurrentUser = ({
+  displayName,
+  isVerified
+}: Omit<UserModel, 'accountId'>) => {
   return (
     <header className="current-user">
       <h2>
@@ -39,7 +45,10 @@ const CurrentUser = ({ accountId, displayName, isVerified }: UserModel) => {
   );
 };
 
-const Friend = ({ displayName, isVerified }: UserModel) => {
+const Friend = ({
+  displayName,
+  isVerified
+}: React.ComponentProps<typeof CurrentUser>) => {
   return (
     <li className="friend">
       {displayName} {isVerified && '✓'}
