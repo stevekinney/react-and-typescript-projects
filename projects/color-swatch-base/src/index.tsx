@@ -2,13 +2,17 @@ import { render } from 'react-dom';
 
 import Application from './Application';
 
-import './style.scss';
 import { ThemeProvider } from './theme-context';
+import { RGBContextProvider } from './context';
+
+import './style.scss';
 
 const rootElement = document.getElementById('root');
 render(
   <ThemeProvider>
-    <Application />
+    <RGBContextProvider>
+      <Application />
+    </RGBContextProvider>
   </ThemeProvider>,
   rootElement
 );
