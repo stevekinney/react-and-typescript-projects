@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CharacterType } from './characters';
 
 export const Table = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -8,13 +9,12 @@ export const Table = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const TableRow = ({
-  heading,
-  value
-}: {
-  heading: string;
-  value: string | number;
-}) => {
+type TableRowProps = {
+  heading: Capitalize<keyof CharacterType>;
+  value: CharacterType[keyof CharacterType];
+};
+
+export const TableRow = ({ heading, value }: TableRowProps) => {
   return (
     <tr>
       <th>{heading}</th>
