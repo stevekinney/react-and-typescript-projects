@@ -1,8 +1,9 @@
 import * as React from 'react';
 
 import { ColorSwatch } from './ColorSwatch';
-import { ColorInputs } from './ColorInputs';
-import { ColorSliders } from './ColorSliders';
+import { ColorAdjustment } from './ColorAdjustment';
+import { ColorInput } from './ColorInput';
+import { ColorSlider } from './ColorSlider';
 
 import { ThemeContext } from './theme-context';
 
@@ -16,8 +17,8 @@ const Application = () => {
       }}
     >
       <ColorSwatch />
-      {/* <ColorInputs {...rgb} /> */}
-      <ColorSliders />
+      <ColorAdjustment Adjustment={ColorInput} />
+      <ColorAdjustment Adjustment={ColorSlider} />
     </main>
   );
 };
