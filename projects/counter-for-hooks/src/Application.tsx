@@ -1,40 +1,51 @@
-import { ChangeEvent, useState } from 'react';
+import { useReducer } from 'react';
 
-const inc = (count: number) => count + 1;
-const dec = (count: number) => count - 1;
+type BasicCounterAction = {
+  type: 'INCREMENT' | 'DECREMENT';
+};
+
+type SetCounterAction = {
+  type: 'SET';
+  payload: number;
+};
+
+type BetterAction = BasicCounterAction | SetCounterAction;
+
+type CounterAction = {
+  type: 'INCREMENT' | 'DECREMENT' | 'SET';
+  payload?: number;
+};
+
+type CounterState = {
+  value: number;
+};
+
+const reducer = (state: CounterState, action: BetterAction) => {
+  switch (action.type) {
+    case 'INCREMENT':
+      return { value: state.value + 1 };
+    case 'DECREMENT':
+      return { value: state.value - 1 };
+    case 'SET':
+      return { value: action.payload };
+  }
+};
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
+  const [state, dispatch] = useReducer(reducer, { value: 0 });
 
-  const changeCount = (event: ChangeEvent<HTMLInputElement>) => {
-    setCount(+event.target.value);
-  };
+  const increment = () => dispatch({ type: 'INCREMENT' });
+  const decrement = () => dispatch({ type: 'DECREMENT' });
+  const reset = () => dispatch({ type: 'SET', payload: 0 });
 
   return (
     <main className="Counter">
       <h1>Days Since Last Incident</h1>
-      <p className="count">{count}</p>
+      <p className="count">{state.value}</p>
       <section className="controls">
-        <button onClick={() => setCount(inc)}>Increment</button>
-        <button onClick={() => setCount(0)}>Reset</button>
-        <button onClick={() => setCount(dec)}>Decrement</button>
-      </section>
-      <section className="controls">
-        <form onSubmit={() => {}}>
-          <label htmlFor="set-to">Set Count</label>
-          <input
-            id="set-to"
-            type="number"
-            value={count}
-            onChange={changeCount}
-          />
-          <input
-            id="set-to"
-            type="number"
-            value={count}
-            onChange={(e) => setCount(+e.target.value)}
-          />
-        </form>
+        <button onClick={increment}>Increment</button>
+        <button onClick={reset}>Reset</button>
+        <button onClick={decrement}>Decrement</button>
       </section>
     </main>
   );
