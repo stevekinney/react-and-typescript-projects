@@ -1,8 +1,6 @@
-$primary-color: rgba(4, 5, 87, 0.575);
+$button-color: rgba(4, 5, 87, 0.575);
 
-html,
-body,
-* {
+html, body, * {
   box-sizing: border-box;
   font-family: Helvetica, Arial, sans-serif;
 }
@@ -15,25 +13,24 @@ h1 {
   text-align: center;
 }
 
-button,
-input[type='submit'] {
-  background-color: $primary-color;
-  border: 5px solid lighten($primary-color, 30%);
+button, input[type="submit"] {
+  background-color: $button-color;
+  border: 5px solid lighten($button-color, 30%);
   color: white;
   margin: 0 0.5em;
   padding: 1em;
   outline: none;
   &:hover {
-    background-color: darken($primary-color, 5%);
+    background-color: darken($button-color, 5%);
   }
   &:active {
-    background-color: darken($primary-color, 10%);
+    background-color: darken($button-color, 10%);
   }
 }
 
 input {
   padding: 1em;
-  &:not([type='submit']) {
+  &:not([type="submit"]) {
     display: block;
     margin: 0.5em;
   }
@@ -54,7 +51,7 @@ form {
 main {
   background-color: white;
   box-shadow: 1px 1px 3px #666;
-  border: 5px solid lighten($primary-color, 40%);
+  border: 5px solid lighten($button-color, 40%);
   font-weight: 700;
   margin: 2em auto;
   padding: 1em;
@@ -67,14 +64,12 @@ main {
   margin: auto;
 }
 
-.color-inputs,
-.color-sliders {
+.color-inputs, .color-sliders {
   display: flex;
   margin: 1em 0;
 }
 
-.color-input,
-.color-slider {
+.color-input, .color-slider {
   width: 100%;
   padding: 1em;
   label {
