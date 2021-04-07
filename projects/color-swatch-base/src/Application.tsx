@@ -15,10 +15,14 @@ const Application = () => {
   });
 
   return (
-    <main style={{ borderColor: toRGB(rgb) }}>
+    <main
+      style={{
+        borderColor: toRGB(rgb)
+      }}
+    >
       <ColorSwatch {...rgb} />
       <ColorInputs {...rgb} />
-      <ColorSliders {...rgb} />
+      <ColorSliders {...rgb} dispatch={dispatch} />
     </main>
   );
 };
