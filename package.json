@@ -1,10 +1,7 @@
 {
   "name": "react-and-typescript-projects",
   "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "install-all": "npm-recursive-install"
-  },
+  "description": "Examples from Steve Kinney's \"React and TypeScript\" course for Frontend Masters",
   "dependencies": {
     "lodash.shuffle": "^4.2.0",
     "prop-types": "15.7.2",
