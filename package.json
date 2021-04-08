@@ -16,7 +16,12 @@
     "recursive-install": "^1.4.0",
     "typescript": "^4.2.3"
   },
-  "browserslist": [
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+"browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
