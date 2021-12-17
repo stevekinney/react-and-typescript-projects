@@ -1,121 +1,71 @@
 import { useReducer } from 'react';
 
+// **create Pizza Data Type to calculate the # of pizza needed
 type PizzaData = {
-  numberOfPeople: number;
-  slicesPerPerson: number;
-  slicesPerPie: number;
+  numOfPeople: 0;
+  numOfSlicePerPerson: number;
+  numOfSlicePerPizza: number;
 };
-
-type PizzaState = PizzaData & { pizzasNeeded: number };
-
-const calculatePizzasNeeded = ({
-  numberOfPeople,
-  slicesPerPerson,
-  slicesPerPie
+// **create a function to calculated the number of pizza needed
+const numOfPizzaNeed = ({
+  numOfPeople,
+  numOfSlicePerPerson,
+  numOfSlicePerPizza
 }: PizzaData): number => {
-  return Math.ceil((numberOfPeople * slicesPerPerson) / slicesPerPie);
+  return Math.ceil((numOfPeople * numOfSlicePerPerson) / numOfSlicePerPizza);
 };
 
-const addPizzasNeededToPizzaData = (data: PizzaData): PizzaState => {
-  return { ...data, pizzasNeeded: calculatePizzasNeeded(data) };
+// 1. create state type
+type PizzaState = {
+  numOfPeople: number;
+  numOfSlicePerPerson: number;
+  numOfSlicePerPizza: number;
+  numOfPizzaNeed: number;
+};
+// 2. create action type
+type IncrementPeople = { type: 'INCREMENT_PEOPLE' };
+type IncrementSlicePerPerson = { type: 'INCREMENT_SLICE_PER_PERSON' };
+type IncrementSlicePerPizza = { type: 'INCREMENT_SLICE_PER_PIZZA' };
+
+// 3. create initial state
+const pizzaState = {
+  numOfPeople: 0,
+  numOfSlicePerPerson: 0,
+  numOfSlicePerPizza: 0,
+  numOfPizzaNeed: 0
 };
 
-const initialState: PizzaState = {
-  numberOfPeople: 8,
-  slicesPerPerson: 2,
-  slicesPerPie: 8,
-  pizzasNeeded: 2
-};
+// ** create a function to update the pizza state, passing the Pizza Data and return Pizza data + return data from numOfPizzaNeed(data)
+const updatePizzaState = (data: PizzaData) => {
+  return {...data, numOfPizzaNeed: numOfPizzaNeed(data)}
+}
 
-const reducer = (state: any, action: any) => {
-  if (action.type === 'UPDATE_NUMBER_OF_PEOPLE') {
-    return addPizzasNeededToPizzaData({
-      ...state,
-      numberOfPeople: action.payload
-    });
+// 4. create reducer function, that will be used in the useReducer() function
+// reducer function is using to update the pizza state based on the action was dispatched
+const reducer = (currentState: PizzaData, action: any) => {
+
+  switch(action.type){
+    case 'INCREMENT_PEOPLE':
+      return updatePizzaState({
+        ...currentState,
+        numOfPeople: action.payload
+      });
+      break;
+    case 'INCREMENT_SLICE_PER_PERSON':
+      return updatePizzaState({
+        ...currentState, 
+        numOfSlicePerPerson: +action.payload
+      });
+      break;
+    case 'INCREMENT_SLICE_PER_PIZZA':
+      return updatePizzaState({
+        ...currentState,
+        numOfSlicePerPizza: action.payload
+      })
   }
-
-  if (action.type === 'UPDATE_SLICES_PER_PERSON') {
-    return addPizzasNeededToPizzaData({
-      ...state,
-      slicesPerPerson: action.payload
-    });
-  }
-
-  if (action.type === 'UPDATE_SLICES_PER_PIE') {
-    return addPizzasNeededToPizzaData({
-      ...state,
-      slicesPerPie: action.payload
-    });
-  }
-
-  return state;
-};
-
-const Calculation = ({ count }: { count: any }) => {
-  return (
-    <section className="calculation">
-      <p className="count">{count}</p>
-      <p className="caption">Pizzas Needed</p>
-    </section>
-  );
-};
-
-const Calculator = ({ dispatch, state }: { state: any; dispatch: any }) => {
-  return (
-    <form onSubmit={() => {}}>
-      <label htmlFor="number-of-people">Number of People</label>
-      <input
-        id="number-of-people"
-        type="number"
-        value={state.numberOfPeople}
-        onChange={(event) =>
-          dispatch({
-            type: 'UPDATE_NUMBER_OF_PEOPLE',
-            payload: event.target.value
-          })
-        }
-      />
-      <label htmlFor="slices-per-person">Slices Per Person</label>
-      <input
-        id="slices-per-person"
-        type="number"
-        value={state.slicesPerPerson}
-        onChange={(event) =>
-          dispatch({
-            type: 'UPDATE_SLICES_PER_PERSON',
-            payload: event.target.value
-          })
-        }
-      />
-      <label htmlFor="slices-per-Pie">Slices Per Pie</label>
-      <input
-        id="slices-per-Pie"
-        type="number"
-        value={state.slicesPerPie}
-        onChange={(event) =>
-          dispatch({
-            type: 'UPDATE_SLICES_PER_PIE',
-            payload: event.target.value
-          })
-        }
-      />
-    </form>
-  );
-};
-
-const Application = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  return (
-    <main className="calculator">
-      <header>
-        <h1>Pizza Calculator</h1>
-      </header>
-      <Calculation count={state.pizzasNeeded} />
-      <Calculator state={state} dispatch={dispatch} />
-    </main>
-  );
-};
-
+}
+// 5. create child component 1
+// 6. create child component 2
+// 7. create parent component
+const Application = () => {};
 export default Application;
